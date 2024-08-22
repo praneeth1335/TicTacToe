@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+        .container{
+            display: flex;
+            width:600px;
+            height: 500px;
+            /* border: 2px solid red; */
+            background-color: white;
+            padding: 25px;
+            flex-direction: column;
+            
+            border-radius: 25px;
+            transition: box-shadow 0.3s ease;
+        }
+        .container:hover {
+            box-shadow: 0px 0px 20px lightblue; /* Light blue shadow */
+        }
+        .container:hover:nth-of-type(2) {
+            box-shadow: 0px 0px 20px lightgreen; /* Light green shadow */
+        }
+        .container:hover:nth-of-type(3) {
+            box-shadow: 0px 0px 20px lightcoral; /* Light coral shadow */
+        }
+         .input_task{
+           position: relative;
+            width: 80%;
+            height: 100%;
+        
+        } 
+
+        .inputs{
+            padding: 15px;
+            outline: none;
+            width: 65%;
+            font-size: 15px;
+            border: none;
+            box-shadow: 5px 10px 10px black;
+            border-radius: 25px;
+        }
+
+        .result-input{
+            padding:10px;
+            outline: transparent;
+            width: 100%;
+            font-size: 20px;
+            border: none;
+
+        }
+         .dropdown-item{
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            display: none;
+            left: 100%;
+            top: 0;
+            width: 100%;
+            font-size: 15px;
+            
+        }
+
+        .dropdown{
+            position: relative;
+            background-color: lightgray;
+            width: 20%;
+            height: 40%;
+            top: 8%;
+            display: inline-block;
+            text-align: center;
+            line-height:2.1;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 20px;
+            z-index: 1111;
+            transition: background-color 0.15s ease;
+        }
+        .dropdown:active{
+            background-color: skyblue;
+            color: white;
+        }
+        .dropdown:hover .dropdown-item{
+            display: block;
+        }
+
+        .MM{
+            position: relative;
+           border-radius: 25px;
+            border: 2px solid red; 
+            
+            margin: 10px;
+            border: none;
+            box-shadow: 0px 0px 5px lightgray;
+            cursor: pointer;
+            background-color:  lightgray;
+            color: black;
+        }
+       
+        .MM:active{
+            background-color: black;
+            color: white;
+        }
+        .MM:active .dropdown{
+            background-color: lightgray;
+        }
+
+        .buttons{
+            margin-left: 20px;
+            position: relative;
+            outline: none;
+            border: 2px solid white;
+            width: 40%;
+            height: 100%;
+            font-size: 20px;
+            border-radius: 25px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            transition: background-color 0.15s ease;
+            top: 10%;
+            box-shadow: 0 8px grey;
+            
+        }
+
+        .buttonsGreen{
+            margin-left: 20px;
+            position: relative;
+            outline: none;
+            border: 2px solid white;
+            width: 60%;
+            height: 100%;
+            font-size: 20px;
+            /* border-radius: 25px; */
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            transition: background-color 0.15s ease;
+            top: 5%;
+            
+        }
+        .buttonsRed{
+            margin-left: 20px;
+            position: relative;
+            outline: none;
+            border: 2px solid white;
+            width: 60%;
+            height: 100%;
+            font-size: 20px;
+            /* border-radius: 25px; */
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            transition: background-color 0.15s ease;
+            top: 5%;
+            
+        }
+
+        .buttons:hover{
+            background-color: lightgrey;
+            color: white;
+        }
+        .buttonsGreen:hover{
+            background-color: lightgrey;
+            color: white;
+        }
+        .buttonsRed:hover{
+            background-color: lightgrey;
+            color: white;
+        }
+        .buttons:active{
+            transform: translateY(4px);
+            box-shadow: 0 4px black;
+        }
+        .buttonsGreen:active{
+            background-color: lightgreen;
+            color: white;
+           transform: translateY(2px);
+        }
+        .buttonsRed:active{
+            background-color: lightcoral;
+            color: white;
+            transform: translateY(2px);
+        }
+        .inner1{
+            width: 100%;
+            height: 25%;
+            display: flex;
+        }
+        .lists {
+    margin-top: 1px;
+    overflow-y: auto; /* Allows scrolling if content overflows */
+    flex: 1; /* Takes up remaining space */
+}
+        .completed_type{
+            list-style-type:none ;
+            display: none;
+        }
+
+        .taskDiv{
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: space-around;
+            align-items: center;
+            padding-bottom: 10px;
+           
+            
+        }
+        .liss{
+            display: flex;
+            width: 100%;
+            height: 50px;
+        }
+        #btn{
+            position: relative;
+            outline: none;
+            border: 2px solid white;
+            width: 25%;
+            height: 47%;
+            font-size: 17px;
+            border-radius: 25px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            transition: background-color 0.15s ease;
+            top: 0%;
+        }
+        #btn:active{
+            background-color: lightgreen;
+            color: white;
+        }
+        .dropdown a{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+        }
+        /* .completed_type li:nth-child(even) {
+            background-color: lightgrey;
+        }
+        .completed_type li:nth-child(odd) {
+            background-color: white;
+        } */
+         /* .taskDiv:nth-child(odd){
+            background-color: lightgray;
+         }
+         .taskDiv:nth-child(even){
+            background-color: white;
+         } */
+    </style>
+</head>
+<body>
+    
+
+    <div class="container">
+        <div class="inner1">
+            <div class="input_task">
+                <input type="text" id="inp" class="inputs" placeholder="Enter Your Task">
+                <button type="button" id="btn"  class="buttons" >Add Task</button>
+            </div>
+            <div class="dropdown">
+                <a>Sort</a>
+                <div class="dropdown-item">
+                    <div class="MM" id="incom">Incomplete</div>
+                    <div class="MM" id="com">Completed</div>
+                </div>
+                
+    
+                </div>
+        </div>
+       
+            <div class="lists">
+                <ul class="incompleted_type" id="list1"></ul>
+                <ul class="completed_type" id="list2">
+                    
+                </ul>
+                
+            </div>
+            </div>
+
+
+
+
+
+    <script type="text/javascript" src="To.js"></script>
+
+</body>
+</html>
